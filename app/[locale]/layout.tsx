@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/Header";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
+import { ViewTransition } from "react";
 
 const headingFont = Bebas_Neue({
   subsets: ["latin"],
@@ -51,10 +52,12 @@ export default async function RootLayout({
       className={`${headingFont.variable} ${bodyFont.variable}`}
     >
       <body className="antialiased flex flex-col min-h-screen">
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header isConnected={false} />
-          {children}
-        </NextIntlClientProvider>
+        <ViewTransition>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <Header isConnected={false} />
+            {children}
+          </NextIntlClientProvider>
+        </ViewTransition>
       </body>
     </html>
   );
