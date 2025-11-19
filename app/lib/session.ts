@@ -31,7 +31,7 @@ export async function createSession(GalleryId: string) {
 
 	cookieStore.set('session', session, {
 		httpOnly: true,
-		secure: true,
+		secure: false,
 		expires: expiresAt,
 		sameSite: 'lax',
 		path: '/',

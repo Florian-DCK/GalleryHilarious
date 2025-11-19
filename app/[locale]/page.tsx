@@ -67,17 +67,17 @@ export default function Home() {
 	};
 
 	return (
-		<main className="flex flex-col justify-center items-center h-full">
-			<h1 className="font-bold text-5xl text-center text-[#e5783a]">
+		<main className="flex flex-col justify-center items-center h-full px-4 lg:py-16">
+			<h1 className="font-bold text-4xl md:text-5xl text-center text-[#e5783a]">
 				{t.rich('title', {
 					br: () => <br />,
 				})}
 			</h1>
-			<form className="mt-10" onSubmit={handleSubmit}>
-				<div className="flex gap-6">
+			<form className="mt-10 w-full max-w-3xl" onSubmit={handleSubmit}>
+				<div className="flex flex-col gap-4 md:flex-row md:items-end">
 					<div className="grid gap-2">
 						<Select value={selectedId} onValueChange={(v) => setSelectedId(v)}>
-							<SelectTrigger className="w-[180px]">
+							<SelectTrigger className="w-full md:w-[180px]">
 								<SelectValue placeholder={t('selectPlaceholder')} />
 							</SelectTrigger>
 							<SelectContent>
@@ -101,7 +101,7 @@ export default function Home() {
 						{/* Champ caché pour inclure la valeur du Select dans FormData */}
 						<input type="hidden" name="id" value={selectedId} />
 					</div>
-					<div className="grid gap-2">
+					<div className="grid gap-2 w-full md:max-w-sm">
 						<Input
 							id="password"
 							name="password"
@@ -110,7 +110,7 @@ export default function Home() {
 							required
 						/>
 					</div>
-					<Button>{t('buttonSubmit')}</Button>
+					<Button className="w-full md:w-auto">{t('buttonSubmit')}</Button>
 				</div>
 			</form>
 		</main>

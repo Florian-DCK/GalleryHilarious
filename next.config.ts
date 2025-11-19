@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
 			{
 				pathname: '/api/images',
 			},
+			{
+				// Allow images placed directly in the public/ root (e.g., /brandLogo.png)
+				pathname: '/**',
+			},
 		],
 	},
 };

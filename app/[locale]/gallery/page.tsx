@@ -202,11 +202,20 @@ export default async function Page({ params, searchParams }: PageProps) {
 	const disableNext = pagination.page >= totalPages;
 
 	return (
-		<main className="">
-			<h1 className="text-4xl font-bold mt-10 ml-10">{data.title}</h1>
-			<Gallery galleryID={galleryId} images={images} />
+		<main className="min-h-screen pb-24 pt-10 sm:pt-14">
+			<div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-16">
+				<header className="border-b border-white/10 pb-6">
+					<p className="text-xs uppercase tracking-[0.25em] text-slate-400 sm:text-sm">
+						The Wall Academy
+					</p>
+					<h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+						{data.title}
+					</h1>
+				</header>
+				<Gallery galleryID={galleryId} images={images} />
+			</div>
 			{totalPages > 1 && (
-				<Pagination className="fixed bottom-4 transform -translate-x-1/2 left-1/2 bg-slate-400/70 backdrop-blur-sm px-4 py-2 rounded-md w-fit">
+				<Pagination className="fixed bottom-4 left-0 right-0 mx-auto w-[calc(100%-2rem)] max-w-md transform rounded-full border border-white/10 bg-slate-900/90 px-2 py-2 text-slate-50 shadow-lg shadow-black/40 backdrop-blur sm:px-4">
 					<PaginationContent>
 						<PaginationItem>
 							<PaginationPrevious
@@ -222,6 +231,9 @@ export default async function Page({ params, searchParams }: PageProps) {
 									<PaginationEllipsis />
 								) : (
 									<PaginationLink
+										className={
+											segment === pagination.page ? 'text-slate-700' : ''
+										}
 										href={buildHref(segment)}
 										isActive={segment === pagination.page}>
 										{segment}

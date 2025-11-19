@@ -1,0 +1,18 @@
+{
+	"HomePage": {
+		"title": "Preserve every memory<br></br>One camp at a time.",
+		"cardTitle": "Identify yourself!",
+		"cardDescription": "Log in to access the gallery of the camp in question.",
+		"selectPlaceholder": "Select a camp",
+		"passwordPlaceholder": "Enter the password",
+		"passwordLabel": "Password",
+		"selectLabel": "Camp",
+		"buttonSubmit": "Access the photos!",
+		"successMessage": "Successfully connected.",
+		"errorMessage": "An error occurred, please check your credentials."
+	},
+	"Header": {
+		"connect": "Choose another album",
+		"toggleNavigation": "Toggle navigation menu"
+	}
+}

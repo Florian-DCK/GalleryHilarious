@@ -10,5 +10,9 @@
 		"buttonSubmit": "Accéder aux photos !",
 		"successMessage": "Connexion réussie.",
 		"errorMessage": "Une erreur est survenue, vérifiez vos identifiants."
+	},
+	"Header": {
+		"connect": "Choisir un autre album",
+		"toggleNavigation": "Basculer le menu de navigation"
 	}
 }
