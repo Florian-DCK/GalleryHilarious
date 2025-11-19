@@ -1,15 +1,17 @@
 {
 	"HomePage": {
-		"title": "Preserve every memory<br></br>One camp at a time.",
+		"title": "Access every iconic moment<br></br>from their adventure.",
 		"cardTitle": "Identify yourself!",
-		"cardDescription": "Log in to access the gallery of the camp in question.",
+		"cardDescription": "Log in to access the gallery for the selected camp.",
 		"selectPlaceholder": "Select a camp",
 		"passwordPlaceholder": "Enter the password",
 		"passwordLabel": "Password",
 		"selectLabel": "Camp",
 		"buttonSubmit": "Access the photos!",
 		"successMessage": "Successfully connected.",
-		"errorMessage": "An error occurred, please check your credentials."
+		"errorMessage": "An error occurred, please check your credentials.",
+		"privacyNote": "Secure access for enrolled guardians",
+		"heroClaim": "Their highlight moments"
 	},
 	"Header": {
 		"connect": "Choose another album",

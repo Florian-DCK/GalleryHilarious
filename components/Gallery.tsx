@@ -1,134 +1,146 @@
-'use client';
-import { useEffect } from 'react';
-import React from 'react';
+"use client";
 
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import 'photoswipe/style.css';
-import Image from 'next/image';
+import React, { useEffect } from "react";
+import Image from "next/image";
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
 
-type props = {
-	childrens?: React.ReactNode;
-	galleryID: string;
-	images: Array<{
-		largeURL: string;
-		thumbnailURL: string;
-		width: number;
-		height: number;
-	}>;
+type GalleryProps = {
+  childrens?: React.ReactNode;
+  galleryID: string;
+  images: Array<{
+    largeURL: string;
+    thumbnailURL: string;
+    width: number;
+    height: number;
+  }>;
 };
 
 const normalizeGalleryId = (rawId: string) => {
-	const trimmed = rawId.trim();
-	if (/^[A-Za-z][\w:-]*$/.test(trimmed)) {
-		return trimmed;
-	}
+  const trimmed = rawId.trim();
+  if (/^[A-Za-z][\w:-]*$/.test(trimmed)) {
+    return trimmed;
+  }
 
-	const sanitized = trimmed.replace(/[^A-Za-z0-9_-]+/g, '-') || 'gallery';
-	return `pswp-${sanitized}`;
+  const sanitized = trimmed.replace(/[^A-Za-z0-9_-]+/g, "-") || "gallery";
+  return `pswp-${sanitized}`;
 };
 
-const Gallery: React.FC<props> = ({ galleryID, images }) => {
-	const normalizedGalleryId = normalizeGalleryId(galleryID);
-	useEffect(() => {
-		const lightbox = new PhotoSwipeLightbox({
-			gallery: '#' + normalizedGalleryId,
-			children: 'a',
-			pswpModule: () => import('photoswipe'),
-		});
-		lightbox.on('uiRegister', function () {
-			const pswp = lightbox.pswp;
-			if (!pswp?.ui?.registerElement) return;
-			pswp.ui.registerElement({
-				name: 'download-button',
-				order: 8,
-				isButton: true,
-				tagName: 'a',
+const Gallery: React.FC<GalleryProps> = ({ galleryID, images }) => {
+  const normalizedGalleryId = normalizeGalleryId(galleryID);
 
-				// SVG with outline
-				html: {
-					isCustomSVG: true,
-					inner:
-						'<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
-					outlineID: 'pswp__icn-download',
-				},
-				onInit: (el, pswp) => {
-					el.setAttribute('download', '');
-					el.setAttribute('target', '_blank');
-					el.setAttribute('rel', 'noopener');
+  useEffect(() => {
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: `#${normalizedGalleryId}`,
+      children: "a",
+      pswpModule: () => import("photoswipe"),
+    });
 
-					pswp.on('change', () => {
-						console.log('change');
-						const src = pswp.currSlide?.data?.src;
-						if (src) {
-							if (el instanceof HTMLAnchorElement) {
-								el.href = src;
-							} else {
-								el.setAttribute('href', src);
-							}
-						}
-					});
-				},
-			});
-		});
-		lightbox.init();
+    lightbox.on("uiRegister", () => {
+      const pswp = lightbox.pswp;
+      if (!pswp?.ui?.registerElement) return;
 
-		return () => {
-			lightbox.destroy();
-		};
-	}, [normalizedGalleryId]);
-	const downloadImage = (url: string) => {
-		const link = document.createElement('a');
-		link.href = url;
-		link.download = url.split('/').pop() ?? 'image';
-		document.body.appendChild(link);
-		link.click();
-		document.body.removeChild(link);
-	};
-	return (
-		<div
-			id={normalizedGalleryId}
-			className={
-				'pswp-gallery grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 lg:p-20'
-			}>
-			{images.map((image, index) => (
-				<div
-					key={galleryID + '-' + index}
-					className="relative hover:scale-[1.02] transition-transform">
-					<a
-						href={image.largeURL}
-						data-pswp-width={image.width}
-						data-pswp-height={image.height}
-						target="_blank"
-						rel="noreferrer"
-						className="block">
-						<div className="relative w-full h-40 sm:h-48 md:h-56 lg:h-64">
-							<Image
-								src={image.thumbnailURL}
-								alt=""
-								fill
-								className="object-cover rounded-md"
-								unoptimized
-								loading="lazy"
-							/>
-						</div>
-					</a>
-					<svg
-						width="32"
-						height="32"
-						viewBox="0 0 32 32"
-						aria-hidden="true"
-						className="cursor-pointer absolute z-10 bottom-2 right-2 fill-white/90 drop-shadow-lg hover:fill-black hover:scale-110 transition-all hover:bg-white/90 p-1 rounded-md bg-black/30"
-						onClick={(event) => {
-							event.preventDefault();
-							event.stopPropagation();
-							downloadImage(image.largeURL);
-						}}>
-						<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" />
-					</svg>
-				</div>
-			))}
-		</div>
-	);
+      pswp.ui.registerElement({
+        name: "download-button",
+        order: 8,
+        isButton: true,
+        tagName: "a",
+        html: {
+          isCustomSVG: true,
+          inner:
+            '<path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" id="pswp__icn-download"/>',
+          outlineID: "pswp__icn-download",
+        },
+        onInit: (el, pswpInstance) => {
+          el.setAttribute("download", "");
+          el.setAttribute("target", "_blank");
+          el.setAttribute("rel", "noopener");
+
+          pswpInstance.on("change", () => {
+            const src = pswpInstance.currSlide?.data?.src;
+            if (!src) return;
+
+            if (el instanceof HTMLAnchorElement) {
+              el.href = src;
+            } else {
+              el.setAttribute("href", src);
+            }
+          });
+        },
+      });
+    });
+
+    lightbox.init();
+
+    return () => {
+      lightbox.destroy();
+    };
+  }, [normalizedGalleryId]);
+
+  const downloadImage = (url: string) => {
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = url.split("/").pop() ?? "image";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <div
+      id={normalizedGalleryId}
+      className="pswp-gallery grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 lg:pt-10"
+    >
+      {images.map((image, index) => (
+        <div
+          key={`${galleryID}-${index}`}
+          className="group relative overflow-hidden rounded-3xl border border-white/10 bg-[#090d16]/70 shadow-[0_25px_60px_rgba(0,0,0,0.55)] transition-transform duration-300 hover:-translate-y-1"
+        >
+          <a
+            href={image.largeURL}
+            data-pswp-width={image.width}
+            data-pswp-height={image.height}
+            target="_blank"
+            rel="noreferrer"
+            className="block"
+          >
+            <div className="relative h-48 w-full md:h-60 lg:h-72">
+              <Image
+                src={image.thumbnailURL}
+                alt=""
+                fill
+                className="object-cover"
+                unoptimized
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            </div>
+          </a>
+
+          <button
+            type="button"
+            aria-label="Download image"
+            className="group absolute bottom-4 right-4 flex size-11 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white transition hover:border-white hover:bg-white hover:text-black"
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              downloadImage(image.largeURL);
+            }}
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 32 32"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M20.5 14.3 17.1 18V10h-2.2v7.9l-3.4-3.6L10 16l6 6.1 6-6.1ZM23 23H9v2h14Z" />
+            </svg>
+          </button>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Gallery;

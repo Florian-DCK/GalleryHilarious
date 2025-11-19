@@ -1,18 +1,20 @@
 {
-	"HomePage": {
-		"title": "Bewaar elke herinnering<br></br>Één stage per keer.",
-		"cardTitle": "Meld je aan!",
-		"cardDescription": "Log in om toegang te krijgen tot de galerij van de betreffende stage.",
-		"selectPlaceholder": "Selecteer een stage",
-		"passwordPlaceholder": "Voer het wachtwoord in",
-		"passwordLabel": "Wachtwoord",
-		"selectLabel": "Stage",
-		"buttonSubmit": "Bekijk de foto's!",
-		"successMessage": "Aanmelden gelukt.",
-		"errorMessage": "Er is een fout opgetreden, controleer je inloggegevens."
-	},
-	"Header": {
-		"connect": "Kies een ander album",
-		"toggleNavigation": "Navigatiemenu wisselen"
-	}
+  "HomePage": {
+    "title": "Krijg toegang tot elk iconisch moment<br></br>van hun avontuur.",
+    "cardTitle": "Meld je aan!",
+    "cardDescription": "Log in om de galerij van het geselecteerde kamp te bekijken.",
+    "selectPlaceholder": "Selecteer een kamp",
+    "passwordPlaceholder": "Voer het wachtwoord in",
+    "passwordLabel": "Wachtwoord",
+    "selectLabel": "Kamp",
+    "buttonSubmit": "Bekijk de foto's!",
+    "successMessage": "Succesvol verbonden.",
+    "errorMessage": "Er is een fout opgetreden, controleer je gegevens.",
+    "privacyNote": "Beveiligde toegang voor ingeschreven begeleiders",
+    "heroClaim": "Hun hoogtepunten"
+  },
+  "Header": {
+    "connect": "Kies een ander album",
+    "toggleNavigation": "Navigatiemenu wisselen"
+  }
 }
