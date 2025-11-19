@@ -6,6 +6,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 
 type HeaderProps = {
   isConnected?: boolean;
@@ -22,6 +24,10 @@ const Header: React.FC<HeaderProps> = ({ isConnected = false }) => {
     { code: "fr", label: "FR" },
     { code: "nl", label: "NL" },
   ];
+  const locale = useLocale(); // from next-intl or your own context
+  const pathname = usePathname();
+  const isHome = pathname === `/${locale}`;
+  console.log("isHome:", isHome);
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#05070d]/85 backdrop-blur-2xl">
@@ -75,10 +81,8 @@ const Header: React.FC<HeaderProps> = ({ isConnected = false }) => {
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            {isConnected ? (
-              <div className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
-                {t("connect")}
-              </div>
+            {isHome ? (
+              ""
             ) : (
               <Button className="w-full md:w-auto" asChild>
                 <Link href="/">{t("connect")}</Link>
