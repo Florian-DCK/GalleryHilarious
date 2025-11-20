@@ -206,7 +206,7 @@ export default function Home() {
 									value={selectValue}
 									onValueChange={(v) => setSelectedId(v)}>
 									<SelectTrigger className="w-full">
-										<SelectValue placeholder={t('selectPlaceholder')} />
+										<SelectValue placeholder={t('selectAnotherPlaceholder')} />
 									</SelectTrigger>
 									<SelectContent>
 										<SelectGroup>
@@ -246,7 +246,9 @@ export default function Home() {
 						<p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">
 							{t('privacyNote')}
 						</p>
-						<Button className="w-full md:w-auto">{t('buttonSubmit')}</Button>
+						<Button className="w-full text-lg md:w-auto">
+							{t('buttonSubmit')}
+						</Button>
 					</div>
 				</form>
 			</div>
