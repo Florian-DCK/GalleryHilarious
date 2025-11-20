@@ -17,7 +17,8 @@ datasource db {
 model gallery {
   id         Int      @id @default(autoincrement())
   title      String
-  password   String
+  password   String   @unique
+  date       String?
   photosPath String?
   createdAt  DateTime @default(now())
 }
