@@ -27,6 +27,7 @@ const nextConfig: NextConfig = {
 	experimental: {
 		viewTransition: true,
 		workerThreads: false,
+		cpus: 1,
 	},
 };
 
