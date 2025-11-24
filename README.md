@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Workflow de GalleryHilarious
 
-## Getting Started
+Ce document décrit le processus pour créer et gérer de nouvelles galeries de photos dans l'application The Wall Academy Gallery.
 
-First, run the development server:
+## 1. Création d'une nouvelle galerie
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Pour ajouter une nouvelle galerie, vous devez d'abord créer une nouvelle entrée dans la base de données avec les informations suivantes :
+
+- **Titre** : Le titre qui sera affiché pour la galerie.
+- **Mot de passe** : Un mot de passe unique pour protéger l'accès à la galerie.
+- **Nom du dossier** : Le nom du répertoire dans lequel les photos de cette galerie seront stockées. Ce nom doit être unique.
+- **Date** : La date de l'événement ou de la création de la galerie.
+
+## 2. Stockage des photos
+
+Les photos de chaque galerie doivent être téléversées via FTP.
+
+- Tous les dossiers de galerie doivent être placés à l'intérieur d'un répertoire principal nommé `storage`.
+- Le nom de chaque dossier à l'intérieur de `storage` doit correspondre exactement au **Nom du dossier** spécifié dans la base de données pour cette galerie.
+
+### Exemple de structure de dossiers :
+
+```
+/storage/
+    ├── mariage-jean-et-jeanne/
+    │   ├── photo1.jpg
+    │   ├── photo2.jpg
+    │   └── ...
+    └── fete-anniversaire-2025/
+        ├── image_001.jpg
+        ├── image_002.jpg
+        └── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 3. Internationalisation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Le texte affiché sur le site est disponible en plusieurs langues. Vous pouvez modifier les traductions pour chaque langue en éditant les fichiers JSON correspondants dans le dossier `messages/`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `messages/en.json` pour l'anglais.
+- `messages/fr.json` pour le français.
+- `messages/nl.json` pour le néerlandais.
 
-## Learn More
+Chaque fichier contient des paires clé-valeur. Pour changer un texte, il suffit de modifier la valeur associée à une clé sans toucher à la clé elle-même.
 
-To learn more about Next.js, take a look at the following resources:
+### Exemple de contenu de fichier JSON :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```json
+{
+  "HomePage": {
+    "title": "Bienvenue dans la galerie",
+    "subtitle": "Entrez le mot de passe pour voir les photos."
+  },
+  "GalleryPage": {
+    "back_button": "Retour à l'accueil"
+  }
+}
+```
