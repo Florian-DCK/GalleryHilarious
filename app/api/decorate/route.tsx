@@ -13,6 +13,13 @@ const prisma = new PrismaClient();
 
 // même logique que ton API images
 const PUBLIC_ROOT = path.join(process.cwd(), "public");
+const GALLERIES_FOLDER = process.env.GALLERIES_FOLDER
+  ? path.normalize(
+      path.isAbsolute(process.env.GALLERIES_FOLDER)
+        ? process.env.GALLERIES_FOLDER
+        : path.join(process.cwd(), process.env.GALLERIES_FOLDER)
+    )
+  : PUBLIC_ROOT;
 const SIGNING_SECRET =
   process.env.IMAGE_SIGNATURE_SECRET ?? process.env.SESSION_SECRET;
 
@@ -43,7 +50,7 @@ const resolveFolderPath = (storedPath: string) => {
   }
   return path.isAbsolute(normalized)
     ? path.normalize(normalized)
-    : path.normalize(path.join(PUBLIC_ROOT, normalized));
+    : path.normalize(path.join(GALLERIES_FOLDER, normalized));
 };
 
 const signImageAccess = (galleryId: number, fileName: string) => {

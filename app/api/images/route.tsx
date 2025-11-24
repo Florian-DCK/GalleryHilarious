@@ -11,7 +11,14 @@ import { decrypt } from "@/app/lib/session";
 
 const prisma = new PrismaClient();
 const IMAGE_EXT = /\.(?:jpe?g|png|webp|gif|bmp|tiff)$/i;
-const GALLERIES_FOLDER = process.env.GALLERIES_FOLDER || "./galleries";
+const PUBLIC_ROOT = path.join(process.cwd(), "public");
+const GALLERIES_FOLDER = process.env.GALLERIES_FOLDER
+  ? path.normalize(
+      path.isAbsolute(process.env.GALLERIES_FOLDER)
+        ? process.env.GALLERIES_FOLDER
+        : path.join(process.cwd(), process.env.GALLERIES_FOLDER)
+    )
+  : PUBLIC_ROOT;
 const PAGE_SIZE = 20;
 const SIGNING_SECRET =
   process.env.IMAGE_SIGNATURE_SECRET ?? process.env.SESSION_SECRET;
@@ -32,8 +39,9 @@ const resolveFolderPath = (storedPath: string) => {
   if (!normalized) {
     return null;
   }
-  console.log(path.join(GALLERIES_FOLDER, normalized));
-  return path.normalize(path.join(GALLERIES_FOLDER, normalized));
+  return path.isAbsolute(normalized)
+    ? path.normalize(normalized)
+    : path.normalize(path.join(GALLERIES_FOLDER, normalized));
 };
 
 const buildDecoratedImageUrl = (
