@@ -161,3 +161,10 @@
 	background: var(--color-primary) !important;
 	border-radius: 999px !important;
 }
+
+/* Cache la navigation et le header quand la lightbox est ouverte */
+.lightbox-open header,
+.lightbox-open #header-navigation,
+.lightbox-open nav {
+	display: none !important;
+}
