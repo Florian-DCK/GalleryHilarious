@@ -4,24 +4,11 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import CursorFollower from "@/components/CursorFollower";
-import { Bebas_Neue, Space_Grotesk } from "next/font/google";
 import { ViewTransition } from "react";
 
-const headingFont = Bebas_Neue({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-heading",
-});
-
-const bodyFont = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-});
-
 export const metadata: Metadata = {
-  title: "The Wall Academy Gallery",
-  description: "Gallery application for The Wall Academy camps",
+  title: "The Wall Academy",
+  description: "Website for The Wall Academy of Vincent Vanasch",
 };
 
 export default async function RootLayout({
@@ -48,7 +35,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={`font-body`}>
-      <body className="antialiased flex flex-col min-h-screen cursor-crosshair text-white">
+      <body className="antialiased flex flex-col min-h-screen cursor-crosshair text-white font-body">
         <CursorFollower />
         <ViewTransition>
           <NextIntlClientProvider locale={locale} messages={messages}>

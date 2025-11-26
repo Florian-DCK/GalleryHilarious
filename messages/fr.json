@@ -1,6 +1,17 @@
 {
   "Home": {
-    "title": "mon<br></br>objectif:<br></br>former<br></br>les<br></br><highlight>meilleurs</highlight><br></br><highlight>gardiens</highlight><br></br>de but."
+    "title": "mon<br></br>objectif:<br></br>former<br></br>les<br></br><highlight>meilleurs</highlight><br></br><highlight>gardiens</highlight><br></br>de but.",
+    "headline1": "Tu veux devenir<br></br>un <highlight>gardien de</highlight><br></br><highlight>but redoutable</highlight><br></br>et briller<br></br>sur le terrain ?",
+    "description1": "Rejoins notre Académie et booste<br></br>tes compétences avec nos coachs expérimentés !<br></br>Apprends aux côtés de <strong>Vincent Vanasch</strong> !<br></br>Prêt pour l'excellence ?",
+    "CTA": "Je m'inscris",
+    "Carousel": {
+      "captionSarah": "Vincent Vanasch est le meilleur gardien du monde !<br></br>J'ai eu la chance de participer à son stage<br></br>et j'ai appris des astuces incroyables<br></br>pour bloquer les tirs !<br></br>Maintenant, je suis prêt<br></br>à devenir moi-même un champion !",
+      "captionChris": "C'est fou ce que j'ai appris.<br></br>C'etait vraiment top.<br></br>De loin, la plus belle semaine<br></br>de l'annee !",
+      "captionThomas": "The Wall Academy<br></br>a été une expérience fantastique pour moi.<br></br>J'ai amélioré mes réflexes,<br></br>mes techniques d'arret<br></br>et j'ai appris à mieux communiquer<br></br>avec mon équipe.",
+      "captionCamille": "Les entraîneurs etaient vraiment formidables.<br></br>Ils m'ont donne des conseils individuels<br></br>pour ameliorer mes performances.<br></br>Je recommande vivement ce stage<br></br>à tous les gardiens !",
+      "captionCeline": "J'ai eu la chance d'avoir des entraîneurs<br></br>qui m'ont appris a bien positionner mon corps,<br></br>à mieux comprendre les angles<br></br>et à mieux anticiper les coups des attaquants !",
+      "captionHugo": "J'ai participé au stage de hockey<br></br>spécialement pour les gardiens<br></br>avec Vincent Vanasch et j'ai beaucoup appris !<br></br>Maintenant, je suis le mur de ma petite equipe,<br></br>et mes amis m'appellent \"le mur de briques\"!"
+    }
   },
   "Gallery": {
     "title": "Accédez à chaque instant iconique<br></br>de leur aventure.",

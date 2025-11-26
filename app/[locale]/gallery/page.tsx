@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 
-export default function Home() {
+export default function Gallery() {
   const t = useTranslations("Gallery");
   const router = useRouter();
   const [galleries, setGalleries] = useState<
@@ -93,9 +93,9 @@ export default function Home() {
       <div className="glass-panel relative mx-auto flex w-full max-w-5xl flex-col gap-10 rounded-3xl px-6 py-10 sm:px-10">
         <div className="space-y-4 text-center">
           <p className="text-sm font-heading uppercase tracking-[0.5em] text-white/70">
-            {t("heroClaim") ?? "Mon objectif"}
+            {t("heroClaim")}
           </p>
-          <h1 className="text-4xl font-heading text-white sm:text-5xl md:text-6xl">
+          <h1 className="font-heading font-bold text-primary text-3xl md:text-4xl">
             {t.rich("title", {
               br: () => <br />,
               highlight: (chunks) => (
