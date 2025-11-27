@@ -4,11 +4,16 @@ import {useLocale, useTranslations} from "next-intl";
 import { SUPPORTED_LOCALES } from "@/i18n/routing";
 import { ReactNode } from "react";
 import {Button} from "@/components/ui/button";
-import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
+import Carousel from "@/components/Carousel";
+import type { EmblaOptionsType } from 'embla-carousel';
+
 
 const Home = () => {
     const t = useTranslations("Home");
     const lang = useLocale();
+    const OPTIONS: EmblaOptionsType = { containScroll: false, loop: true };
+    const SLIDE_COUNT = 5
+    const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
     const chunks = {
         br: () => <br/>,
         highlight: (chunks: ReactNode) => (
@@ -74,84 +79,7 @@ const Home = () => {
             </div>
         </section>
         <section className="h-screen bg-white text-black grid-cols-2 flex items-center justify-center">
-            <Carousel opts={{align: "start", loop: true}} className={"w-full max-w-2/3"}>
-                <CarouselContent>
-                    <CarouselItem className={"basis-1/3"}>
-                        <div className={"w-fit"}>
-                            <Image src={"/stage_06.jpeg"} alt={"Stage 06"} width={400} height={450} className={"w-96 h-[450px] object-cover"}/>
-                            <p className={"tracking-tight leading-4 italic text-sm mt-5 ml-7 text-black/90"}>
-                                {t.rich("Carousel.captionSarah", chunks)}
-                            </p>
-                            <div className={"flex items-center justify-between"}>
-                                <hr className={"w-1/2 ml-7"}/>
-                                <p className={"text-sm text-right mt-2 ml-7 shrink-0"}>Sarah U12</p>
-                            </div>
-                        </div>
-                    </CarouselItem>
-                    <CarouselItem className={"basis-1/3"}>
-                        <div className={"w-fit"}>
-                            <Image src={"/stage_01.jpeg"} alt={"Stage 01"} width={400} height={450} className={"w-96 h-[450px] object-cover"}/>
-                            <p className={"tracking-tight leading-4 italic text-sm mt-5 ml-7 text-black/90"}>
-                                {t.rich("Carousel.captionChris", chunks)}
-                            </p>
-                            <div className={"flex items-center justify-between"}>
-                                <hr className={"w-1/2 ml-7"}/>
-                                <p className={"text-sm text-right mt-2 ml-7 shrink-0"}>Chris U19</p>
-                            </div>
-                        </div>
-                    </CarouselItem>
-                    <CarouselItem className={"basis-1/3"}>
-                        <div className={"w-fit"}>
-                            <Image src={"/stage_02.jpeg"} alt={"Stage 02"} width={400} height={450} className={"w-96 h-[450px] object-cover"}/>
-                            <p className={"tracking-tight leading-4 italic text-sm mt-5 ml-7 text-black/90"}>
-                                {t.rich("Carousel.captionThomas", chunks)}
-                            </p>
-                            <div className={"flex items-center justify-between"}>
-                                <hr className={"w-1/2 ml-7"}/>
-                                <p className={"text-sm text-right mt-2 ml-7 shrink-0"}>Thomas U16</p>
-                            </div>
-                        </div>
-                    </CarouselItem>
-                    <CarouselItem className={"basis-1/3"}>
-                        <div className={"w-fit"}>
-                            <Image src={"/stage_03.jpeg"} alt={"Stage 03"} width={400} height={450} className={"w-96 h-[450px] object-cover"}/>
-                            <p className={"tracking-tight leading-4 italic text-sm mt-5 ml-7 text-black/90"}>
-                                {t.rich("Carousel.captionCamille", chunks)}
-                            </p>
-                            <div className={"flex items-center justify-between"}>
-                                <hr className={"w-1/2 ml-7"}/>
-                                <p className={"text-sm text-right mt-2 ml-7 shrink-0"}>Camille U12</p>
-                            </div>
-                        </div>
-                    </CarouselItem>
-                    <CarouselItem className={"basis-1/3"}>
-                        <div className={"w-fit"}>
-                            <Image src={"/stage_04.jpeg"} alt={"Stage 04"} width={400} height={450} className={"w-96 h-[450px] object-cover"}/>
-                            <p className={"tracking-tight leading-4 italic text-sm mt-5 ml-7 text-black/90"}>
-                                {t.rich("Carousel.captionCeline", chunks)}
-                            </p>
-                            <div className={"flex items-center justify-between"}>
-                                <hr className={"w-1/2 ml-7"}/>
-                                <p className={"text-sm text-right mt-2 ml-7 shrink-0"}>Céline U16</p>
-                            </div>
-                        </div>
-                    </CarouselItem>
-                    <CarouselItem className={"basis-1/3"}>
-                        <div className={"w-fit"}>
-                            <Image src={"/stage_05.jpeg"} alt={"Stage 05"} width={400} height={450} className={"w-96 h-[450px] object-cover"}/>
-                            <p className={"tracking-tight leading-4 italic text-sm mt-5 ml-7 text-black/90"}>
-                                {t.rich("Carousel.captionHugo", chunks)}
-                            </p>
-                            <div className={"flex items-center justify-between"}>
-                                <hr className={"w-1/2 ml-7"}/>
-                                <p className={"text-sm text-right mt-2 ml-7 shrink-0"}>Hugo U14</p>
-                            </div>
-                        </div>
-                    </CarouselItem>
-                </CarouselContent>
-                <CarouselNext/>
-                <CarouselPrevious/>
-            </Carousel>
+            <Carousel slides={SLIDES} options={OPTIONS}/>
         </section>
     </main>
   );
